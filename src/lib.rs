@@ -120,10 +120,10 @@ use core::fmt;
 pub enum Format<'a> {
     /// Insert uniform indentation before every line
     ///
-    /// This format takes a static string as input and inserts it after every newline
+    /// This format takes a string as input and inserts it after every newline
     Uniform {
         /// The string to insert as indentation
-        indentation: &'static str,
+        indentation: &'a str,
     },
     /// Inserts a number before the first line
     ///
@@ -186,8 +186,8 @@ impl<'a, D> Indented<'a, D> {
         self.with_format(Format::Numbered { ind })
     }
 
-    /// Sets the format to `Format::Uniform` with the provided static string
-    pub fn with_str(self, indentation: &'static str) -> Self {
+    /// Sets the format to `Format::Uniform` with the provided `str`
+    pub fn with_str(self, indentation: &'a str) -> Self {
         self.with_format(Format::Uniform { indentation })
     }
 
